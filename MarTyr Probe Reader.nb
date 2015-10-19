@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     36895,        790]
-NotebookOptionsPosition[     36538,        773]
-NotebookOutlinePosition[     36951,        790]
-CellTagsIndexPosition[     36908,        787]
+NotebookDataLength[     37260,        795]
+NotebookOptionsPosition[     36903,        778]
+NotebookOutlinePosition[     37316,        795]
+CellTagsIndexPosition[     37273,        792]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -192,7 +192,8 @@ Cell[BoxData[{
      "\"\<O2%-RAS\>\"", ",", "\"\<O2%-MAIN\>\"", ",", "\"\<O2%-QUAR\>\"", 
      ",", "\"\<Cond-RAS\>\"", ",", "\"\<Cond-QUAR\>\"", ",", "\"\<pH-INC\>\"",
       ",", "\"\<\[Degree]C-INC\>\"", ",", "\"\<O2%-INC\>\"", ",", 
-     "\"\<\[Degree]C-AMB\>\"", ",", "\"\<Count\>\""}], "}"}]}], 
+     "\"\<\[Degree]C-AMB\>\"", ",", "\"\<SAL-RAS\>\"", ",", 
+     "\"\<SAL-QUAR\>\"", ",", "\"\<Count\>\""}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"order", "[", "ch_", "]"}], ":=", 
@@ -202,7 +203,7 @@ Cell[BoxData[{
      RowBox[{"Join", "[", 
       RowBox[{
        RowBox[{"{", "1", "}"}], ",", "ch", ",", 
-       RowBox[{"{", "17", "}"}]}], "]"}], "]"}], ",", "0"}], 
+       RowBox[{"{", "19", "}"}]}], "]"}], "]"}], ",", "0"}], 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"SET", "=", "1"}], ";"}], "\[IndentingNewLine]", 
@@ -611,8 +612,10 @@ Spreadsheets\\\\SelectedProbes\>\"", "<>", "year1", "<>", "\"\<-\>\"", "<>",
                 RowBox[{"13", "\[Rule]", "\"\<pH-INC\>\""}], ",", 
                 RowBox[{"14", "\[Rule]", "\"\<\[Degree]C-INC\>\""}], ",", 
                 RowBox[{"15", "\[Rule]", "\"\<O2%-INC\>\""}], ",", 
-                RowBox[{"16", "\[Rule]", "\"\<\[Degree]C-AMB\>\""}]}], "}"}], 
-              ",", 
+                RowBox[{"16", "\[Rule]", "\"\<\[Degree]C-AMB\>\""}], ",", 
+                RowBox[{"17", "\[Rule]", "\"\<SAL-RAS\>\""}], ",", 
+                RowBox[{"18", "\[Rule]", "\"\<SAL-QUAR\>\""}]}], "}"}], ",", 
+              "\[IndentingNewLine]", 
               RowBox[{"Appearance", "\[Rule]", "\"\<Row\>\""}]}], "]"}]}], 
            "\[IndentingNewLine]", "}"}], ",", 
           RowBox[{"Alignment", "\[Rule]", "Center"}]}], "\[IndentingNewLine]",
@@ -769,7 +772,9 @@ overwrite previous spreadsheets of the same name.\>\"", ",", "Red"}], "]"}],
    3.6440324824018693`*^9}, {3.644032532533783*^9, 3.6440326451863966`*^9}, 
    3.6440328360270863`*^9, {3.644032886601637*^9, 3.6440328890381584`*^9}, {
    3.644253978286562*^9, 3.644254071870962*^9}, {3.644254115254562*^9, 
-   3.644254195001762*^9}}]
+   3.644254195001762*^9}, {3.6542824529796*^9, 3.654282505299828*^9}, {
+   3.6542828338580437`*^9, 3.6542828629482408`*^9}, {3.6542829513873453`*^9, 
+   3.654282953212721*^9}}]
 },
 InitializationCellEvaluation->True,
 InitializationCellWarning->False,
@@ -789,7 +794,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 35976, 751, 19, "Input",
+Cell[558, 20, 36341, 756, 19, "Input",
  CellOpen->False,
  InitializationCell->True]
 }

@@ -8,7 +8,8 @@ outlist = [0]*15
 n = 0
 filedate = datetime.date.today()
 probe = ["pH-RAS","pH-MAIN","pH-QUAR",u"\u00b0"+"C-RAS",u"\u00b0"+"C-MAIN",u"\u00b0"+"C-QUAR",
-"O2 %-RAS","O2 %-MAIN","O2 %-QUAR","COND-RAS","COND-QUAR","pH-INC",u"\u00b0"+"C-INC","O2 %-INC",u"\u00b0"+"C-AMB"]
+"O2 %-RAS","O2 %-MAIN","O2 %-QUAR","COND-RAS","COND-QUAR","pH-INC",u"\u00b0"+"C-INC","O2 %-INC",u"\u00b0"+"C-AMB",
+"SAL-RAS","SAL-QUAR"]
 
 ser = serial.Serial('COM3',9600,timeout=.2)
 
@@ -54,21 +55,64 @@ def writeP():
   # in a single string.
 
 # table prints an ASCII table whenever dat is received over serial. 
-def table():  
-  print ('\033[31m'+"       DO NOT CLOSE WINDOW!!!")
+def table(): 
+  global ch, outlist
+  # the salinity readings are calculated and so correspond to no voltages which is
+  # represented as "Not Applicable" on the realtime chart.
+  ch.extend(['NA','NA'])
+  print ('\033[91m'+"       DO NOT CLOSE WINDOW!!!")
   print ('\033[0m'+"     "+str(datetime.datetime.now()))
   tab = PrettyTable(["Probe", "Voltage", "Cal. Value"])
   tab.align["Probe"] = "l"
   tab.align["Cal. Value"] = "l"
   tab.padding_width = 1
   # adds the name, voltages, and calibrated probe value  to tab in sequence.
-  for i in range (0,15):
+  for i in range (0,17):
     tab.add_row([probe[i],ch[i],outlist[i]])
   # pt parses tab into a set of strings that can be edited.  
   pt = tab.get_string()
   # write each string with a newline.
   sys.stdout.write("\r" + pt)
   print "\n             MarTyr 171"
+  # clears outlist and ch so that readings are the correct dimensions.
+  outlist = [0]*15
+  ch = [0]*15
+
+# sal gives the salinity (unitless) of water based on the conductivity and
+# temperature. Negative conductivites are incongruent with the model, so
+# Csamp values are constrained to positive numbers, as are salinity values
+# in the output. Uses the model from: 
+# http://www.chemiasoft.com/chemd/salinity_calculator and should be checked
+# against that salinity calculater if in doubt.
+def sal(Csamp, T):
+  global S
+  if Csamp <= 0:
+    S = 0
+  else:
+    a = [.008, -.1692, 25.3851, 14.0941, -7.0261, 2.7081]
+    b = [.0005, -.0056, -.0066, -.0375, .0636, -.0144]
+    c = [-.0267243, 4.6636947, 861.3027640, 29035.1640851]
+    Csol = c[0]*T**3 + c[1]*T**2 + c[2]*T + c[3]
+    Rt = (1000*Csamp)/Csol
+    S = (
+    a[0] 
+    + a[1]*Rt**(.5)
+    + a[2]*Rt
+    + a[3]*Rt**(1.5)
+    + a[4]*Rt**2
+    + a[5]*Rt**(2.5)
+    + ((T-15)/(1+.0162*(T-15)))
+      *(
+      b[0] 
+      + b[1]*Rt**(.5) 
+      + b[2]*Rt 
+      + b[3]*Rt**(1.5) 
+      + b[4]*Rt**2 
+      + b[5]*Rt**(2.5)
+      )
+    )
+    if S <= 0:
+      S = 0
   
 while True:  
   global dat
@@ -108,6 +152,14 @@ while True:
     # (m*ch +b) in the formof y = mx + b.
     for i in range (0,15):
       outlist[i] = round(m[i]*ch[i] + b[i],4)
+
+    
+    sal(outlist[9],outlist[3])
+    outlist.append(round(S, 4))
+    S = 0
+
+    sal(outlist[10],outlist[5])
+    outlist.append(round(S, 4))
   
     # outlist is converted to a string of comma separated variables (out) to be written
     # to a .csv file.
