@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     37260,        795]
-NotebookOptionsPosition[     36903,        778]
-NotebookOutlinePosition[     37316,        795]
-CellTagsIndexPosition[     37273,        792]
+NotebookDataLength[     39926,        855]
+NotebookOptionsPosition[     39568,        838]
+NotebookOutlinePosition[     39982,        855]
+CellTagsIndexPosition[     39939,        852]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -222,14 +222,71 @@ Cell[BoxData[{
         RowBox[{
          RowBox[{"{", "\[IndentingNewLine]", 
           RowBox[{
+           RowBox[{"mid", "=", 
+            RowBox[{"out", "[", 
+             RowBox[{
+             "year1", ",", "month1", ",", "day1", ",", "year2", ",", "month2",
+               ",", "day2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"adjust", "=", 
+            RowBox[{"Position", "[", 
+             RowBox[{
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"Length", "[", 
+                 RowBox[{"mid", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"i", ",", "1", ",", 
+                  RowBox[{"Length", "[", "mid", "]"}]}], "}"}]}], "]"}], ",", 
+              "17"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"keep", "=", 
+            RowBox[{"Position", "[", 
+             RowBox[{
+              RowBox[{"Table", "[", 
+               RowBox[{
+                RowBox[{"Length", "[", 
+                 RowBox[{"mid", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"i", ",", "1", ",", 
+                  RowBox[{"Length", "[", "mid", "]"}]}], "}"}]}], "]"}], ",", 
+              "19"}], "]"}]}], ";", "\[IndentingNewLine]", 
            RowBox[{"display", "=", 
             RowBox[{"Prepend", "[", 
              RowBox[{
-              RowBox[{"out", "[", 
+              RowBox[{"Join", "[", 
                RowBox[{
-               "year1", ",", "month1", ",", "day1", ",", "year2", ",", 
-                "month2", ",", "day2"}], "]"}], ",", "header"}], "]"}]}], ";",
-            "\[IndentingNewLine]", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"Insert", "[", 
+                   RowBox[{
+                    RowBox[{"mid", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"adjust", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"i", ",", "1"}], "]"}], "]"}], "]"}], "]"}], ",", 
+                    "\"\<NA\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"-", "2"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"-", "2"}], "}"}]}], "}"}]}], "]"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"i", ",", "1", ",", 
+                    RowBox[{"Length", "[", "adjust", "]"}]}], "}"}]}], "]"}], 
+                ",", 
+                RowBox[{"Table", "[", 
+                 RowBox[{
+                  RowBox[{"mid", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"keep", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"j", ",", "1"}], "]"}], "]"}], "]"}], "]"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"j", ",", "1", ",", 
+                    RowBox[{"Length", "[", "keep", "]"}]}], "}"}]}], "]"}]}], 
+               "]"}], ",", "header"}], "]"}]}], ";", "\[IndentingNewLine]", 
            RowBox[{"{", "\[IndentingNewLine]", 
             RowBox[{
              RowBox[{"If", "\[IndentingNewLine]", "[", "\[IndentingNewLine]", 
@@ -774,12 +831,15 @@ overwrite previous spreadsheets of the same name.\>\"", ",", "Red"}], "]"}],
    3.644253978286562*^9, 3.644254071870962*^9}, {3.644254115254562*^9, 
    3.644254195001762*^9}, {3.6542824529796*^9, 3.654282505299828*^9}, {
    3.6542828338580437`*^9, 3.6542828629482408`*^9}, {3.6542829513873453`*^9, 
-   3.654282953212721*^9}}]
+   3.654282953212721*^9}, {3.6543616403643312`*^9, 3.654361815092331*^9}, 
+   3.654361878405331*^9, 3.654361986839331*^9, {3.6543625456003313`*^9, 
+   3.654362646639331*^9}, 3.6543742000552464`*^9, {3.654374252328246*^9, 
+   3.6543742623252463`*^9}}]
 },
 InitializationCellEvaluation->True,
 InitializationCellWarning->False,
-WindowSize->{1264, 685},
-WindowMargins->{{-8, Automatic}, {Automatic, 0}},
+WindowSize->{1440, 828},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
 FrontEndVersion->"10.1 for Microsoft Windows (64-bit) (March 23, 2015)",
 StyleDefinitions->"Default.nb"
 ]
@@ -794,7 +854,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 36341, 756, 19, "Input",
+Cell[558, 20, 39006, 816, 19, "Input",
  CellOpen->False,
  InitializationCell->True]
 }
