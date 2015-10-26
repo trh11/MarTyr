@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     39450,        933]
-NotebookOptionsPosition[     38995,        913]
-NotebookOutlinePosition[     39410,        930]
-CellTagsIndexPosition[     39367,        927]
+NotebookDataLength[     39623,        930]
+NotebookOptionsPosition[     39264,        913]
+NotebookOutlinePosition[     39679,        930]
+CellTagsIndexPosition[     39636,        927]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -64,25 +64,27 @@ Cell[BoxData[{
       RowBox[{
        RowBox[{
         RowBox[{"PCS", "=", 
-         RowBox[{"Table", "[", 
+         RowBox[{"Append", "[", 
           RowBox[{
-           RowBox[{"{", 
+           RowBox[{"Table", "[", 
             RowBox[{
-             RowBox[{"ToExpression", "[", 
-              RowBox[{"\"\<VL\>\"", "<>", 
-               RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
-             RowBox[{"ToExpression", "[", 
-              RowBox[{"\"\<LP\>\"", "<>", 
-               RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
-             RowBox[{"ToExpression", "[", 
-              RowBox[{"\"\<VH\>\"", "<>", 
-               RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
-             RowBox[{"ToExpression", "[", 
-              RowBox[{"\"\<HP\>\"", "<>", 
-               RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], "}"}], ",", 
-           RowBox[{"{", 
-            RowBox[{"i", ",", "1", ",", "15", ",", "1"}], "}"}]}], "]"}]}], 
-        ";", "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"\"\<VL\>\"", "<>", 
+                 RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"\"\<LP\>\"", "<>", 
+                 RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"\"\<VH\>\"", "<>", 
+                 RowBox[{"ToString", "[", "i", "]"}]}], "]"}], ",", 
+               RowBox[{"ToExpression", "[", 
+                RowBox[{"\"\<HP\>\"", "<>", 
+                 RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1", ",", "15", ",", "1"}], "}"}]}], "]"}], 
+           ",", "freq"}], "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"m", "=", 
          RowBox[{
           RowBox[{
@@ -132,11 +134,13 @@ Cell[BoxData[{
           RowBox[{"ComplexInfinity", "\[Rule]", "0"}]}]}], ";", 
         "\[IndentingNewLine]", 
         RowBox[{"calibration", "=", " ", 
-         RowBox[{"Partition", "[", 
+         RowBox[{"Append", "[", 
           RowBox[{
-           RowBox[{"Riffle", "[", 
-            RowBox[{"m", ",", "b"}], "]"}], ",", "2"}], "]"}]}], ";", 
-        "\[IndentingNewLine]", 
+           RowBox[{"Partition", "[", 
+            RowBox[{
+             RowBox[{"Riffle", "[", 
+              RowBox[{"m", ",", "b"}], "]"}], ",", "2"}], "]"}], ",", 
+           "freq"}], "]"}]}], ";", "\[IndentingNewLine]", 
         RowBox[{"If", "[", 
          RowBox[{
           RowBox[{"CALIBRATE", "\[Equal]", "1"}], ",", "\[IndentingNewLine]", 
@@ -821,22 +825,20 @@ Cell[BoxData[{
              "\"\<\>\"", ",", "LightRed", ",", "LightBlue", ",", 
               "LightOrange", ",", "LightGreen"}], "}"}], "}"}]}]}], 
          "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
-       RowBox[{"(*", 
+       RowBox[{"Column", "[", 
         RowBox[{
-         RowBox[{"Control", "[", 
-          RowBox[{"{", 
-           RowBox[{
+         RowBox[{"{", 
+          RowBox[{"Control", "[", 
+           RowBox[{"{", 
             RowBox[{"{", 
-             RowBox[{"CALIBRATE", ",", "0", ",", "\"\<\>\""}], "}"}], ",", 
-            RowBox[{"{", 
-             RowBox[{"1", "\[Rule]", 
-              RowBox[{"Style", "[", 
-               RowBox[{"\"\<CALIBRATE\>\"", ",", "Bold", ",", "Large"}], 
-               "]"}]}], "}"}], ",", "Setter", ",", 
-            RowBox[{"Background", "\[Rule]", 
-             RowBox[{"Lighter", "[", 
-              RowBox[{"Green", ",", " ", ".7"}], "]"}]}]}], "}"}], "]"}], 
-         ","}], "*)"}], "\[IndentingNewLine]", 
+             RowBox[{"freq", ",", 
+              RowBox[{"PCSI", "[", 
+               RowBox[{"[", 
+                RowBox[{"16", ",", "1"}], "]"}], "]"}], ",", 
+              "\"\<Sample Frequency In Minutes\>\""}], "}"}], "}"}], "]"}], 
+          "}"}], ",", 
+         RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
        RowBox[{"Button", "[", 
         RowBox[{"\"\<CALIBRATE\>\"", ",", 
          RowBox[{"CALIBRATE", " ", "=", " ", "1"}]}], "]"}], ",", 
@@ -850,6 +852,8 @@ Cell[BoxData[{
              "Red"}], "]"}], ",", "\"\<\>\""}], "}"}]}]}], 
       "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}]}], 
    "\[IndentingNewLine]", "]"}], ";"}]}], "Input",
+ Editable->False,
+ CellOpen->False,
  InitializationCell->True,
  CellChangeTimes->{
   3.6421662539117174`*^9, {3.6421665522504244`*^9, 3.642166586424424*^9}, {
@@ -899,17 +903,13 @@ Cell[BoxData[{
    3.6428550203901496`*^9, 3.642855034289596*^9}, {3.6428550811905127`*^9, 
    3.642855125061525*^9}, {3.642855240961449*^9, 3.6428557732671947`*^9}, {
    3.654877498118559*^9, 3.654877512304559*^9}, {3.6548831112527776`*^9, 
-   3.654883112515904*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"Directory", "[", "]"}]], "Input",
- CellChangeTimes->{{3.654883084748128*^9, 3.654883095961249*^9}}],
-
-Cell[BoxData["\<\"C:\\\\Users\\\\trh11\\\\Directory\\\\MarTyr\"\>"], "Output",
- CellChangeTimes->{3.65488309697535*^9}]
-}, Open  ]]
+   3.654883112515904*^9}, {3.654883598321542*^9, 3.6548836063685417`*^9}, {
+   3.6548836397835417`*^9, 3.654883686298542*^9}, {3.6548837244125423`*^9, 
+   3.6548839287365417`*^9}, {3.654884018569542*^9, 3.6548840219605417`*^9}, {
+   3.6548840726695423`*^9, 3.654884075700542*^9}, {3.654884127363542*^9, 
+   3.654884158472542*^9}, {3.654884364476542*^9, 3.654884388395542*^9}, {
+   3.654884431721542*^9, 3.654884433984542*^9}, {3.6548844721115417`*^9, 
+   3.654884474198542*^9}}]
 },
 InitializationCellEvaluation->True,
 InitializationCellWarning->False,
@@ -929,12 +929,9 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 38151, 881, 1350, "Input",
- InitializationCell->True],
-Cell[CellGroupData[{
-Cell[38734, 905, 123, 2, 31, "Input"],
-Cell[38860, 909, 119, 1, 31, "Output"]
-}, Open  ]]
+Cell[558, 20, 38702, 891, 19, "Input",
+ CellOpen->False,
+ InitializationCell->True]
 }
 ]
 *)
