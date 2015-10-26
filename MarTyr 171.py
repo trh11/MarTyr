@@ -11,7 +11,7 @@ probe = ["pH-RAS","pH-MAIN","pH-QUAR",u"\u00b0"+"C-RAS",u"\u00b0"+"C-MAIN",u"\u0
 "O2 %-RAS","O2 %-MAIN","O2 %-QUAR","COND-RAS","COND-QUAR","pH-INC",u"\u00b0"+"C-INC","O2 %-INC",u"\u00b0"+"C-AMB",
 "SAL-RAS","SAL-QUAR"]
 
-ser = serial.Serial('COM3',9600,timeout=.2)
+ser = serial.Serial('COM7',9600,timeout=.2)
 
 colorama.init()
 # put_cursor resets the command line output back to start to refresh the table of
@@ -36,9 +36,9 @@ def writeV():
     chvolwriter = csv.writer(csvfile, delimiter=',', quotechar='|', lineterminator='\n')
     chvolwriter.writerow([str(datetime.datetime.now()) + "," + tdat + "," + str(n)])
     # call WriteP fuction directly after voltages are written.
-    writeP()
+    writeP(60*freq)
 
-def writeP():
+def writeP(T):
   global n, filedate, dat, out
   with open('Calibrated Probes\DirectProbeReading'+str(filedate)+'.csv', 'a') as csvfile:
     # chwriter separates the string of calibrated probe readings (out) into 15 indexed
@@ -49,7 +49,7 @@ def writeP():
     chcalwriter = csv.writer(csvfile, delimiter=',', quotechar='|', lineterminator='\n')
     chcalwriter.writerow([str(datetime.datetime.now()) + "," + out + "," + str(n)])
     # Sets the timing for WriteV and WriteP to restart ever 900s = 15min.
-    threading.Timer(900,writeV).start()
+    threading.Timer(T,writeV).start()
 
   # dat is the data gathered over the USB. 15 channels of voltages comma separated 
   # in a single string.
@@ -62,6 +62,7 @@ def table():
   ch.extend(['NA','NA'])
   print ('\033[91m'+"       DO NOT CLOSE WINDOW!!!")
   print ('\033[0m'+"     "+str(datetime.datetime.now()))
+  print "  1 sample written every " + str(freq) + " minutes"
   tab = PrettyTable(["Probe", "Voltage", "Cal. Value"])
   tab.align["Probe"] = "l"
   tab.align["Cal. Value"] = "l"
@@ -73,7 +74,7 @@ def table():
   pt = tab.get_string()
   # write each string with a newline.
   sys.stdout.write("\r" + pt)
-  print "\n             MarTyr 171"
+  print "\n             MarTyr 171\n"
   # clears outlist and ch so that readings are the correct dimensions.
   outlist = [0]*15
   ch = [0]*15
@@ -147,6 +148,8 @@ while True:
     # list of floating point calibration intercept values (b).
     for i in range (0,15):
       b[i] = float(callist[i].split("\t")[1])
+      
+    freq = float(callist[15])
   
     # the for loop creats a list (outlist) of floating point calibrated probe readings 
     # (m*ch +b) in the formof y = mx + b.
