@@ -11,7 +11,7 @@ probe = ["pH-RAS","pH-MAIN","pH-QUAR",u"\u00b0"+"C-RAS",u"\u00b0"+"C-MAIN",u"\u0
 "O2 %-RAS","O2 %-MAIN","O2 %-QUAR","COND-RAS","COND-QUAR","pH-INC",u"\u00b0"+"C-INC","O2 %-INC",u"\u00b0"+"C-AMB",
 "SAL-RAS","SAL-QUAR"]
 
-ser = serial.Serial('COM7',9600,timeout=.2)
+ser = serial.Serial('COM3',9600,timeout=.2)
 
 colorama.init()
 # put_cursor resets the command line output back to start to refresh the table of
@@ -62,7 +62,7 @@ def table():
   ch.extend(['NA','NA'])
   print ('\033[91m'+"       DO NOT CLOSE WINDOW!!!")
   print ('\033[0m'+"     "+str(datetime.datetime.now()))
-  print "  1 sample written every " + str(freq) + " minutes"
+  print "1 sample written every " + str(freq) + " minutes"
   tab = PrettyTable(["Probe", "Voltage", "Cal. Value"])
   tab.align["Probe"] = "l"
   tab.align["Cal. Value"] = "l"
@@ -129,6 +129,9 @@ while True:
   
     # chlist splits the voltage string (dat) into a list of separate voltages.
     chlist = dat.split(",")
+    for i in range(len(chlist)):
+      if not chlist[i]:
+        chlist[i] = 0
     # the for loop then converts the list into another list (ch) of floating
     # point integers to be calibrated.
     for i in range (0,15):
