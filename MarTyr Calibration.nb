@@ -3,26 +3,22 @@
 (*** Wolfram Notebook File ***)
 (* http://www.wolfram.com/nb *)
 
-(* CreatedBy='Mathematica 10.1' *)
+(* CreatedBy='Mathematica 10.3' *)
 
 (*CacheID: 234*)
 (* Internal cache information:
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     39623,        930]
-NotebookOptionsPosition[     39264,        913]
-NotebookOutlinePosition[     39679,        930]
-CellTagsIndexPosition[     39636,        927]
+NotebookDataLength[     40135,        942]
+NotebookOptionsPosition[     39776,        925]
+NotebookOutlinePosition[     40191,        942]
+CellTagsIndexPosition[     40148,        939]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
 Cell[BoxData[{
- RowBox[{"FrontEndTokenExecute", "[", 
-  RowBox[{
-   RowBox[{"SelectedNotebook", "[", "]"}], ",", "\"\<WindowMiniaturize\>\""}],
-   "]"}], "\[IndentingNewLine]", 
  RowBox[{"SetOptions", "[", 
   RowBox[{"$FrontEnd", ",", 
    RowBox[{"GlobalInitializationCellWarning", "\[Rule]", "False"}]}], 
@@ -33,19 +29,29 @@ Cell[BoxData[{
    RowBox[{"InitializationCellEvaluation", "\[Rule]", "True"}], ",", 
    RowBox[{"InitializationCellWarning", "\[Rule]", "False"}]}], 
   "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nbC0", " ", "=", " ", 
+   RowBox[{"SelectedNotebook", "[", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetOptions", "[", 
+   RowBox[{"nbC0", ",", 
+    RowBox[{"Visible", "\[Rule]", "False"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{"Off", "[", 
   StyleBox[
    RowBox[{
     RowBox[{"Power", "::", "infy"}], ",", 
     RowBox[{"Infinity", "::", "indet"}]}], "MessageName"], 
   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Directory", "[", "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"cell", "=", 
    RowBox[{"{", 
     RowBox[{"70", ",", "17"}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"SetDirectory", "[", 
-   RowBox[{"Directory", "[", "]"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"PCSI", " ", "=", 
    RowBox[{"Import", "[", 
@@ -55,7 +61,7 @@ Cell[BoxData[{
   RowBox[{"With", "[", 
    RowBox[{
     RowBox[{"{", 
-     RowBox[{"nb", "=", 
+     RowBox[{"nbC1", "=", 
       RowBox[{"CreateWindow", "[", 
        RowBox[{"Visible", "\[Rule]", "False"}], "]"}]}], "}"}], ",", 
     "\[IndentingNewLine]", 
@@ -91,21 +97,24 @@ Cell[BoxData[{
            RowBox[{"N", "[", 
             RowBox[{"Table", "[", 
              RowBox[{
-              FractionBox[
-               RowBox[{
-                RowBox[{"ToExpression", "[", 
-                 RowBox[{"\"\<HP\>\"", "<>", 
-                  RowBox[{"ToString", "[", "i", "]"}]}], "]"}], "-", 
-                RowBox[{"ToExpression", "[", 
-                 RowBox[{"\"\<LP\>\"", "<>", 
-                  RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], 
-               RowBox[{
-                RowBox[{"ToExpression", "[", 
-                 RowBox[{"\"\<VH\>\"", "<>", 
-                  RowBox[{"ToString", "[", "i", "]"}]}], "]"}], "-", 
-                RowBox[{"ToExpression", "[", 
-                 RowBox[{"\"\<VL\>\"", "<>", 
-                  RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}]], ",", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"\"\<HP\>\"", "<>", 
+                   RowBox[{"ToString", "[", "i", "]"}]}], "]"}], "-", 
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"\"\<LP\>\"", "<>", 
+                   RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], ")"}], "/", 
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"\"\<VH\>\"", "<>", 
+                   RowBox[{"ToString", "[", "i", "]"}]}], "]"}], "-", 
+                 RowBox[{"ToExpression", "[", 
+                  RowBox[{"\"\<VL\>\"", "<>", 
+                   RowBox[{"ToString", "[", "i", "]"}]}], "]"}]}], ")"}]}], 
+              ",", 
               RowBox[{"{", 
                RowBox[{"i", ",", "1", ",", "15", ",", "1"}], "}"}]}], "]"}], 
             "]"}], "/.", 
@@ -909,12 +918,15 @@ Cell[BoxData[{
    3.6548840726695423`*^9, 3.654884075700542*^9}, {3.654884127363542*^9, 
    3.654884158472542*^9}, {3.654884364476542*^9, 3.654884388395542*^9}, {
    3.654884431721542*^9, 3.654884433984542*^9}, {3.6548844721115417`*^9, 
-   3.654884474198542*^9}}]
+   3.654884474198542*^9}, {3.6696451070127363`*^9, 3.669645114741736*^9}, {
+   3.6696451533287363`*^9, 3.6696451630267363`*^9}, {3.669645500773736*^9, 
+   3.669645516337736*^9}, 3.669645689349736*^9, {3.6696464753807364`*^9, 
+   3.6696465342187357`*^9}}]
 },
 InitializationCellEvaluation->True,
 InitializationCellWarning->False,
-WindowSize->{1264, 842},
-WindowMargins->{{-7, Automatic}, {Automatic, 22}},
+WindowSize->{489, 17},
+WindowMargins->{{340, Automatic}, {Automatic, 117}},
 FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
@@ -929,7 +941,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 38702, 891, 19, "Input",
+Cell[558, 20, 39214, 903, 19, "Input",
  CellOpen->False,
  InitializationCell->True]
 }
