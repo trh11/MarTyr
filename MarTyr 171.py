@@ -131,9 +131,10 @@ while True:
     chlist = dat.split(",")
     for i in range(len(chlist)):
       if not chlist[i]:
-        chlist[i] = 0
+	    chlist[i] = 0
     # the for loop then converts the list into another list (ch) of floating
     # point integers to be calibrated.
+    if len(chlist) != 16: chlist = ["0.00"]*16
     for i in range (0,15):
       ch[i] = float(chlist[i])
     
